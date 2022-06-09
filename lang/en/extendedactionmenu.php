@@ -28,3 +28,5 @@ defined('MOODLE_INTERNAL') || die();
 $string['pluginname']       = 'Extended Action Menu';
 $string['modulename']       = 'Extended Action Menu';
 $string['modulenameplural'] = 'Extended Action Menu\'s';
+
+$string['pluginadministration'] = 'Extended Action Menu module administration';

@@ -22,42 +22,41 @@
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require(__DIR__.'/../../config.php');
-require_once(__DIR__.'/lib.php');
+require('../../config.php');
+require_once($CFG->dirroot.'/mod/page/lib.php');
+require_once($CFG->dirroot.'/mod/page/locallib.php');
+require_once($CFG->libdir.'/completionlib.php');
 
-// Course module id.
-$id = optional_param('id', 0, PARAM_INT);
+$id  = required_param('id', PARAM_INT); // Course Module ID
 
-// Activity instance id.
-$e = optional_param('e', 0, PARAM_INT);
-
-if ($id) {
-    $cm = get_coursemodule_from_id('extendedactionmenu', $id, 0, false, MUST_EXIST);
-    $course = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
-    $moduleinstance = $DB->get_record('extendedactionmenu', array('id' => $cm->instance), '*', MUST_EXIST);
-} else {
-    $moduleinstance = $DB->get_record('extendedactionmenu', array('id' => $e), '*', MUST_EXIST);
-    $course = $DB->get_record('course', array('id' => $moduleinstance->course), '*', MUST_EXIST);
-    $cm = get_coursemodule_from_instance('extendedactionmenu', $moduleinstance->id, $course->id, false, MUST_EXIST);
+if (!$cm = get_coursemodule_from_id('extendedactionmenu', $id)) {
+    print_error('invalidcoursemodule');
+    exit;
 }
+$module = $DB->get_record('extendedactionmenu', array('id' => $cm->instance), '*', MUST_EXIST);
+$course = $DB->get_record('course', array('id'=>$cm->course), '*', MUST_EXIST);
 
-require_login($course, true, $cm);
-
-$modulecontext = context_module::instance($cm->id);
-
-$event = \mod_extendedactionmenu\event\course_module_viewed::create(array(
-    'objectid' => $moduleinstance->id,
-    'context' => $modulecontext
-));
-$event->add_record_snapshot('course', $course);
-$event->add_record_snapshot('extendedactionmenu', $moduleinstance);
-$event->trigger();
+require_course_login($course, true, $cm);
+$context = context_module::instance($cm->id);
+require_capability('mod/extendedactionmenu:view', $context);
 
 $PAGE->set_url('/mod/extendedactionmenu/view.php', array('id' => $cm->id));
-$PAGE->set_title(format_string($moduleinstance->name));
-$PAGE->set_heading(format_string($course->fullname));
-$PAGE->set_context($modulecontext);
+$PAGE->add_body_class('limitedwidth');
+$PAGE->set_title($course->shortname.': '.$module->name);
+$PAGE->set_heading($course->fullname);
+$PAGE->set_activity_record($module);
+if (!$PAGE->activityheader->is_title_allowed()) {
+    $activityheader['title'] = "";
+}
+$PAGE->activityheader->set_attrs($activityheader);
 
 echo $OUTPUT->header();
+
+$formatoptions = new stdClass;
+$formatoptions->noclean = true;
+$formatoptions->overflowdiv = true;
+$formatoptions->context = $context;
+$content = format_text($module->content, $module->introformat, $formatoptions);
+echo $OUTPUT->box($content, "generalbox center clearfix");
 
 echo $OUTPUT->footer();
