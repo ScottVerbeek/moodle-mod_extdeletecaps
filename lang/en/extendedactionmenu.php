@@ -30,3 +30,4 @@ $string['modulename']       = 'Extended Action Menu';
 $string['modulenameplural'] = 'Extended Action Menu\'s';
 
 $string['pluginadministration'] = 'Extended Action Menu module administration';
+$string['viewall'] = 'View all';
