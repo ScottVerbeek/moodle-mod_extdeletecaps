@@ -28,7 +28,7 @@
  * @param string $feature Constant representing the feature.
  * @return true | null True if the feature is supported, null otherwise.
  */
-function mod_extendedactionmenu_supports($feature) {
+function extendedactionmenu_supports($feature) {
     switch ($feature) {
         case FEATURE_BACKUP_MOODLE2: return true;
         case FEATURE_MOD_INTRO:      return true;
