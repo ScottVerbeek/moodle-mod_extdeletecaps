@@ -47,7 +47,7 @@ class mod_extendedactionmenu_mod_form extends moodleform_mod {
         $mform->addElement('header', 'general', get_string('general', 'form'));
 
         // Adding the standard "name" field.
-        $mform->addElement('text', 'name', get_string('extendedactionmenuname', 'mod_extendedactionmenu'), array('size' => '64'));
+        $mform->addElement('text', 'name', get_string('name'), array('size' => '64'));
 
         if (!empty($CFG->formatstringstriptags)) {
             $mform->setType('name', PARAM_TEXT);
@@ -57,19 +57,12 @@ class mod_extendedactionmenu_mod_form extends moodleform_mod {
 
         $mform->addRule('name', null, 'required', null, 'client');
         $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
-        $mform->addHelpButton('name', 'extendedactionmenuname', 'mod_extendedactionmenu');
+        $this->standard_intro_elements();
 
-        // Adding the standard "intro" and "introformat" fields.
-        if ($CFG->branch >= 29) {
-            $this->standard_intro_elements();
-        } else {
-            $this->add_intro_editor();
-        }
-
-        // Adding the rest of mod_extendedactionmenu settings, spreading all them into this fieldset
-        // ... or adding more fieldsets ('header' elements) if needed for better logic.
-        $mform->addElement('static', 'label1', 'extendedactionmenusettings', get_string('extendedactionmenusettings', 'mod_extendedactionmenu'));
-        $mform->addElement('header', 'extendedactionmenufieldset', get_string('extendedactionmenufieldset', 'mod_extendedactionmenu'));
+        // Adding the rest of mod_extendedactionmenu settings.
+        $mform->addElement('header', 'contentsection', get_string('content'));
+        $mform->addElement('textarea', 'content', get_string('content'));
+        $mform->addRule('content', get_string('required'), 'required', null, 'client');
 
         // Add standard elements.
         $this->standard_coursemodule_elements();
