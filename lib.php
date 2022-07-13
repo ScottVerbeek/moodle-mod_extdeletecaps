@@ -23,28 +23,6 @@
  */
 
 /**
- * Callback to add addition action menu item.
- *
- * @param int $cmid The course module id.
- * @return array return an array of action_menu_link_secondary.
- */
-function extdeletecaps_extend_action_menu($cmid) {
-    global $COURSE;
-
-    $actions = array();
-
-    $actions['hello'] = new action_menu_link_secondary(
-        new moodle_url('/mod/extdeletecaps/index.php', array('id' => $COURSE->id)),
-        new pix_icon('a/view_list_active', '', 'moodle', array('class' => 'iconsmall')),
-        get_string('viewall', 'mod_extdeletecaps'),
-        array('class' => 'editing_delete', 'data-action' => 'hello')
-    );
-
-    return $actions;
-}
-
-
-/**
  * Return if the plugin supports $feature.
  *
  * @param string $feature Constant representing the feature.
