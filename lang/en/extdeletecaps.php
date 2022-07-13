@@ -29,5 +29,9 @@ $string['pluginname']       = 'Extended Delete Capability';
 $string['modulename']       = 'Extended Delete Capability';
 $string['modulenameplural'] = 'Extended Delete Capabilities';
 
+$string['extdeletecaps:view'] = 'The ability to view a Extended Delete Capabily activity';
+$string['extdeletecaps:addinstance'] = 'The ability to create a Extended Delete Capabily activity';
+$string['extdeletecaps:delinstance'] = 'The ability to delete a Extended Delete Capabily activity';
+
 $string['pluginadministration'] = 'Extended Delete Capability module administration';
 $string['viewall'] = 'View all';
