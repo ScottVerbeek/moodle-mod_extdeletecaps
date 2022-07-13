@@ -23,6 +23,17 @@
  */
 
 /**
+ * Callback to add additional capabilities.
+ *
+ * @param int $cmid
+ * @return array return an array of capabilities
+ */
+function extdeletecaps_extended_delete_capabilities($cmid) {
+    return ["mod/extdeletecaps:delinstance"];
+}
+
+
+/**
  * Return if the plugin supports $feature.
  *
  * @param string $feature Constant representing the feature.
