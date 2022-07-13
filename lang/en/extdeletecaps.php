@@ -17,7 +17,7 @@
 /**
  * Plugin strings are defined here.
  *
- * @package     mod_extendedactionmenu
+ * @package     mod_extdeletecaps
  * @category    string
  * @copyright   2022 Scott Verbeek <scottverbeek@catalyst-it.net
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -25,9 +25,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname']       = 'Extended Action Menu';
-$string['modulename']       = 'Extended Action Menu';
-$string['modulenameplural'] = 'Extended Action Menu\'s';
+$string['pluginname']       = 'Extended Delete Capability';
+$string['modulename']       = 'Extended Delete Capability';
+$string['modulenameplural'] = 'Extended Delete Capabilities';
 
-$string['pluginadministration'] = 'Extended Action Menu module administration';
+$string['pluginadministration'] = 'Extended Delete Capability module administration';
 $string['viewall'] = 'View all';

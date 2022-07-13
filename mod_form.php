@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * The main mod_extendedactionmenu configuration form.
+ * The main mod_extdeletecaps configuration form.
  *
- * @package     mod_extendedactionmenu
+ * @package     mod_extdeletecaps
  * @copyright   2022 Scott Verbeek <scottverbeek@catalyst-it.net
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -29,11 +29,11 @@ require_once($CFG->dirroot.'/course/moodleform_mod.php');
 /**
  * Module instance settings form.
  *
- * @package     mod_extendedactionmenu
+ * @package     mod_extdeletecaps
  * @copyright   2022 Scott Verbeek <scottverbeek@catalyst-it.net
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class mod_extendedactionmenu_mod_form extends moodleform_mod {
+class mod_extdeletecaps_mod_form extends moodleform_mod {
 
     /**
      * Defines forms elements
@@ -59,7 +59,7 @@ class mod_extendedactionmenu_mod_form extends moodleform_mod {
         $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
         $this->standard_intro_elements();
 
-        // Adding the rest of mod_extendedactionmenu settings.
+        // Adding the rest of mod_extdeletecaps settings.
         $mform->addElement('header', 'contentsection', get_string('content'));
         $mform->addElement('textarea', 'content', get_string('content'));
         $mform->addRule('content', get_string('required'), 'required', null, 'client');

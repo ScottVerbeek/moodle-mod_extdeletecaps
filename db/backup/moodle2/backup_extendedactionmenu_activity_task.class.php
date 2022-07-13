@@ -16,7 +16,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package   mod_extendedactionmenu
+ * @package   mod_extdeletecaps
  * @category  backup
  * @copyright 2022 Scott Verbeek <scottverbeek@catalyst-it.net
  * @license   https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -24,12 +24,12 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-require_once($CFG->dirroot . '/mod/choice/backup/moodle2/backup_extendedactionmenu_stepslib.php'); // Because it exists (must)
+require_once($CFG->dirroot . '/mod/choice/backup/moodle2/backup_extdeletecaps_stepslib.php'); // Because it exists (must)
 
 /**
- * Define all the backup steps that will be used by the backup_extendedactionmenu_activity_task
+ * Define all the backup steps that will be used by the backup_extdeletecaps_activity_task
  */
-class backup_extendedactionmenu_activity_task extends backup_activity_task {
+class backup_extdeletecaps_activity_task extends backup_activity_task {
 
     /**
      * No specific settings for this activity
@@ -38,10 +38,10 @@ class backup_extendedactionmenu_activity_task extends backup_activity_task {
     }
 
     /**
-     * Defines a backup step to store the instance data in the extendedactionmenu.xml file
+     * Defines a backup step to store the instance data in the extdeletecaps.xml file
      */
     protected function define_my_steps() {
-        $this->add_step(new backup_extendedactionmenu_activity_structure_step('extendedactionmenu_structure', 'extendedactionmenu.xml'));
+        $this->add_step(new backup_extdeletecaps_activity_structure_step('extdeletecaps_structure', 'extdeletecaps.xml'));
     }
 
     /**
@@ -56,11 +56,11 @@ class backup_extendedactionmenu_activity_task extends backup_activity_task {
         $base = preg_quote($CFG->wwwroot,"/");
 
         // Link to the list.
-        $search="/(".$base."\/mod\/extendedactionmenu\/index.php\?id\=)([0-9]+)/";
+        $search="/(".$base."\/mod\/extdeletecaps\/index.php\?id\=)([0-9]+)/";
         $content= preg_replace($search, '$@PAGEINDEX*$2@$', $content);
 
-        // Link to extendedactionmenu view by moduleid
-        $search="/(".$base."\/mod\/extendedactionmenu\/view.php\?id\=)([0-9]+)/";
+        // Link to extdeletecaps view by moduleid
+        $search="/(".$base."\/mod\/extdeletecaps\/view.php\?id\=)([0-9]+)/";
         $content= preg_replace($search, '$@PAGEVIEWBYID*$2@$', $content);
 
         return $content;

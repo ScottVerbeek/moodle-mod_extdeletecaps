@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Extended Action Menu module capability definition
+ * Extended Delete Capability module capability definition
  *
- * @package     mod_extendedactionmenu
+ * @package     mod_extdeletecaps
  * @copyright   2022 Scott Verbeek <scottverbeek@catalyst-it.net
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die;
 
 $capabilities = array(
-    'mod/extendedactionmenu:view' => array(
+    'mod/extdeletecaps:view' => array(
         'captype' => 'read',
         'contextlevel' => CONTEXT_MODULE,
         'archetypes' => array(
@@ -34,7 +34,7 @@ $capabilities = array(
         )
     ),
 
-    'mod/extendedactionmenu:addinstance' => array(
+    'mod/extdeletecaps:addinstance' => array(
         'riskbitmask' => RISK_XSS,
 
         'captype' => 'write',

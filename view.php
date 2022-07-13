@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Prints an instance of mod_extendedactionmenu.
+ * Prints an instance of mod_extdeletecaps.
  *
- * @package     mod_extendedactionmenu
+ * @package     mod_extdeletecaps
  * @copyright   2022 Scott Verbeek <scottverbeek@catalyst-it.net
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -29,18 +29,18 @@ require_once($CFG->libdir.'/completionlib.php');
 
 $id  = required_param('id', PARAM_INT); // Course Module ID
 
-if (!$cm = get_coursemodule_from_id('extendedactionmenu', $id)) {
+if (!$cm = get_coursemodule_from_id('extdeletecaps', $id)) {
     print_error('invalidcoursemodule');
     exit;
 }
-$module = $DB->get_record('extendedactionmenu', array('id' => $cm->instance), '*', MUST_EXIST);
+$module = $DB->get_record('extdeletecaps', array('id' => $cm->instance), '*', MUST_EXIST);
 $course = $DB->get_record('course', array('id'=>$cm->course), '*', MUST_EXIST);
 
 require_course_login($course, true, $cm);
 $context = context_module::instance($cm->id);
-require_capability('mod/extendedactionmenu:view', $context);
+require_capability('mod/extdeletecaps:view', $context);
 
-$PAGE->set_url('/mod/extendedactionmenu/view.php', array('id' => $cm->id));
+$PAGE->set_url('/mod/extdeletecaps/view.php', array('id' => $cm->id));
 $PAGE->add_body_class('limitedwidth');
 $PAGE->set_title($course->shortname.': '.$module->name);
 $PAGE->set_heading($course->fullname);

@@ -17,7 +17,7 @@
 /**
  * Library of interface functions and constants.
  *
- * @package     mod_extendedactionmenu
+ * @package     mod_extdeletecaps
  * @copyright   2022 Scott Verbeek <scottverbeek@catalyst-it.net
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -28,15 +28,15 @@
  * @param int $cmid The course module id.
  * @return array return an array of action_menu_link_secondary.
  */
-function extendedactionmenu_extend_action_menu($cmid) {
+function extdeletecaps_extend_action_menu($cmid) {
     global $COURSE;
 
     $actions = array();
 
     $actions['hello'] = new action_menu_link_secondary(
-        new moodle_url('/mod/extendedactionmenu/index.php', array('id' => $COURSE->id)),
+        new moodle_url('/mod/extdeletecaps/index.php', array('id' => $COURSE->id)),
         new pix_icon('a/view_list_active', '', 'moodle', array('class' => 'iconsmall')),
-        get_string('viewall', 'mod_extendedactionmenu'),
+        get_string('viewall', 'mod_extdeletecaps'),
         array('class' => 'editing_delete', 'data-action' => 'hello')
     );
 
@@ -50,7 +50,7 @@ function extendedactionmenu_extend_action_menu($cmid) {
  * @param string $feature Constant representing the feature.
  * @return true | null True if the feature is supported, null otherwise.
  */
-function extendedactionmenu_supports($feature) {
+function extdeletecaps_supports($feature) {
     switch ($feature) {
         case FEATURE_BACKUP_MOODLE2: return true;
         case FEATURE_MOD_INTRO:      return true;
@@ -60,60 +60,60 @@ function extendedactionmenu_supports($feature) {
 }
 
 /**
- * Saves a new instance of the mod_extendedactionmenu into the database.
+ * Saves a new instance of the mod_extdeletecaps into the database.
  *
  * Given an object containing all the necessary data, (defined by the form
  * in mod_form.php) this function will create a new instance and return the id
  * number of the instance.
  *
  * @param object $moduleinstance An object from the form.
- * @param mod_extendedactionmenu_mod_form $mform The form.
+ * @param mod_extdeletecaps_mod_form $mform The form.
  * @return int The id of the newly inserted record.
  */
-function extendedactionmenu_add_instance($moduleinstance, $mform = null) {
+function extdeletecaps_add_instance($moduleinstance, $mform = null) {
     global $DB;
 
     $moduleinstance->timecreated = time();
 
-    $id = $DB->insert_record('extendedactionmenu', $moduleinstance);
+    $id = $DB->insert_record('extdeletecaps', $moduleinstance);
 
     return $id;
 }
 
 /**
- * Updates an instance of the mod_extendedactionmenu in the database.
+ * Updates an instance of the mod_extdeletecaps in the database.
  *
  * Given an object containing all the necessary data (defined in mod_form.php),
  * this function will update an existing instance with new data.
  *
  * @param object $moduleinstance An object from the form in mod_form.php.
- * @param mod_extendedactionmenu_mod_form $mform The form.
+ * @param mod_extdeletecaps_mod_form $mform The form.
  * @return bool True if successful, false otherwise.
  */
-function extendedactionmenu_update_instance($moduleinstance, $mform = null) {
+function extdeletecaps_update_instance($moduleinstance, $mform = null) {
     global $DB;
 
     $moduleinstance->timemodified = time();
     $moduleinstance->id = $moduleinstance->instance;
 
-    return $DB->update_record('extendedactionmenu', $moduleinstance);
+    return $DB->update_record('extdeletecaps', $moduleinstance);
 }
 
 /**
- * Removes an instance of the mod_extendedactionmenu from the database.
+ * Removes an instance of the mod_extdeletecaps from the database.
  *
  * @param int $id Id of the module instance.
  * @return bool True if successful, false on failure.
  */
-function extendedactionmenu_delete_instance($id) {
+function extdeletecaps_delete_instance($id) {
     global $DB;
 
-    $exists = $DB->get_record('extendedactionmenu', array('id' => $id));
+    $exists = $DB->get_record('extdeletecaps', array('id' => $id));
     if (!$exists) {
         return false;
     }
 
-    $DB->delete_records('extendedactionmenu', array('id' => $id));
+    $DB->delete_records('extdeletecaps', array('id' => $id));
 
     return true;
 }

@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Display information about all the mod_extendedactionmenu modules in the requested course.
+ * Display information about all the mod_extdeletecaps modules in the requested course.
  *
- * @package     mod_extendedactionmenu
+ * @package     mod_extdeletecaps
  * @copyright   2022 Scott Verbeek <scottverbeek@catalyst-it.net
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -33,20 +33,20 @@ require_course_login($course);
 
 $coursecontext = context_course::instance($course->id);
 
-$PAGE->set_url('/mod/extendedactionmenu/index.php', array('id' => $id));
+$PAGE->set_url('/mod/extdeletecaps/index.php', array('id' => $id));
 $PAGE->set_title(format_string($course->fullname));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($coursecontext);
 
 echo $OUTPUT->header();
 
-$modulenameplural = get_string('modulenameplural', 'mod_extendedactionmenu');
+$modulenameplural = get_string('modulenameplural', 'mod_extdeletecaps');
 echo $OUTPUT->heading($modulenameplural);
 
-$extendedactionmenus = get_all_instances_in_course('extendedactionmenu', $course);
+$extdeletecapss = get_all_instances_in_course('extdeletecaps', $course);
 
-if (empty($extendedactionmenus)) {
-    notice(get_string('no$extendedactionmenuinstances', 'mod_extendedactionmenu'), new moodle_url('/course/view.php', array('id' => $course->id)));
+if (empty($extdeletecapss)) {
+    notice(get_string('no$extdeletecapsinstances', 'mod_extdeletecaps'), new moodle_url('/course/view.php', array('id' => $course->id)));
 }
 
 $table = new html_table();
@@ -63,20 +63,20 @@ if ($course->format == 'weeks') {
     $table->align = array('left', 'left', 'left');
 }
 
-foreach ($extendedactionmenus as $extendedactionmenu) {
-    if (!$extendedactionmenu->visible) {
+foreach ($extdeletecapss as $extdeletecaps) {
+    if (!$extdeletecaps->visible) {
         $link = html_writer::link(
-            new moodle_url('/mod/extendedactionmenu/view.php', array('id' => $extendedactionmenu->coursemodule)),
-            format_string($extendedactionmenu->name, true),
+            new moodle_url('/mod/extdeletecaps/view.php', array('id' => $extdeletecaps->coursemodule)),
+            format_string($extdeletecaps->name, true),
             array('class' => 'dimmed'));
     } else {
         $link = html_writer::link(
-            new moodle_url('/mod/extendedactionmenu/view.php', array('id' => $extendedactionmenu->coursemodule)),
-            format_string($extendedactionmenu->name, true));
+            new moodle_url('/mod/extdeletecaps/view.php', array('id' => $extdeletecaps->coursemodule)),
+            format_string($extdeletecaps->name, true));
     }
 
     if ($course->format == 'weeks' or $course->format == 'topics') {
-        $table->data[] = array($extendedactionmenu->section, $link);
+        $table->data[] = array($extdeletecaps->section, $link);
     } else {
         $table->data[] = array($link);
     }

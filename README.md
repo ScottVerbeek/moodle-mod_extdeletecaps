@@ -1,4 +1,4 @@
-# Extended Action Menu #
+# Extended Delete Capability #
 
 TODO Describe the plugin shortly here.
 
@@ -16,7 +16,7 @@ TODO Provide more detailed description here.
 
 The plugin can be also installed by putting the contents of this directory to
 
-    {your/moodle/dirroot}/mod/extendedactionmenu
+    {your/moodle/dirroot}/mod/extdeletecaps
 
 Afterwards, log in to your Moodle site as an admin and go to _Site administration >
 Notifications_ to complete the installation.

@@ -17,15 +17,14 @@
 /**
  * Plugin version and other meta-data are defined here.
  *
- * @package     mod_extendedactionmenu
+ * @package     mod_extdeletecaps
  * @copyright   2022 Scott Verbeek <scottverbeek@catalyst-it.net
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'mod_extendedactionmenu';
+$plugin->component = 'mod_extdeletecaps';
 $plugin->release = '0.1.0';
 $plugin->version = 2022060800;
-$plugin->requires = 2022041900;
 $plugin->maturity = MATURITY_ALPHA;
