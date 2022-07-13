@@ -45,13 +45,8 @@ $PAGE->add_body_class('limitedwidth');
 $PAGE->set_title($course->shortname.': '.$module->name);
 $PAGE->set_heading($course->fullname);
 $PAGE->set_activity_record($module);
-if (!$PAGE->activityheader->is_title_allowed()) {
-    $activityheader['title'] = "";
-}
-$PAGE->activityheader->set_attrs($activityheader);
 
 echo $OUTPUT->header();
-
 $formatoptions = new stdClass;
 $formatoptions->noclean = true;
 $formatoptions->overflowdiv = true;
